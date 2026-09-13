@@ -66,3 +66,14 @@ and no environmental configuration needed on server - except for docker runtime
 
 - Image is the actual package with the configurations / service / start script basically the artifact
 - Container is when you pull that image into your local machine and is actually running
+- COntainer is the running environment for an Image
+
+## Docker Vs Virtual Machine
+
+- Docker runs on the host OS
+    - Os (App <-> OS kernel <-> Hardware)
+    - Docker virtualize the applications layers and uses the kernel of host <- Much faster
+    - VM virtualize both OS kernel + applications (Entire OS) <- its size is much larger and must slower
+    - You can run any VM of any OS on any Host OS but docker must run on their compatible os
+- Different levels of abstractions
+- Why linux based docker containers don't run windows
