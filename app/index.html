@@ -63,9 +63,9 @@
 
             <!-- View mode -->
             <div id="view-mode">
-                <h2 id="view-name">Tameem Hisham</h2>
-                <p id="view-email">tameem@example.com</p>
-                <p id="view-university">University of Manchester</p>
+                <h2 id="view-name">Name</h2>
+                <p id="view-email">Email</p>
+                <p id="view-university">University</p>
                 <button onclick="toggleEdit(true)">Edit</button>
             </div>
 
@@ -85,12 +85,24 @@
         </div>
 
         <script>
-            // All in the browser only — nothing is sent to the server,
-            // so a page refresh resets everything back to the defaults above.
+            // Load whatever is stored in Mongo when the page opens
+            function loadProfile() {
+                fetch("/get-profile")
+                    .then(function (res) {
+                        return res.json();
+                    })
+                    .then(function (data) {
+                        document.getElementById("view-name").textContent =
+                            data.name || "Name";
+                        document.getElementById("view-email").textContent =
+                            data.email || "Email";
+                        document.getElementById("view-university").textContent =
+                            data.university || "University";
+                    });
+            }
 
             function toggleEdit(isEditing) {
                 if (isEditing) {
-                    // pre-fill inputs with whatever is currently shown
                     document.getElementById("input-name").value =
                         document.getElementById("view-name").textContent;
                     document.getElementById("input-email").value =
@@ -107,14 +119,24 @@
             }
 
             function saveProfile() {
-                document.getElementById("view-name").textContent =
-                    document.getElementById("input-name").value;
-                document.getElementById("view-email").textContent =
-                    document.getElementById("input-email").value;
-                document.getElementById("view-university").textContent =
-                    document.getElementById("input-university").value;
-                toggleEdit(false);
+                let userObj = {
+                    name: document.getElementById("input-name").value,
+                    email: document.getElementById("input-email").value,
+                    university:
+                        document.getElementById("input-university").value,
+                };
+
+                fetch("/update-profile", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(userObj),
+                }).then(function () {
+                    loadProfile();
+                    toggleEdit(false);
+                });
             }
+
+            loadProfile();
         </script>
     </body>
 </html>

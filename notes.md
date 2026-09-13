@@ -98,3 +98,22 @@ and no environmental configuration needed on server - except for docker runtime
 - docker run vs docker start
 - docker run creates a new container from an image
 - docker start runs a container
+
+## Docker network
+
+- docker creates its own isolated docker network within host
+- 2 containers can talk directly to each other with their container names
+- docker network ls (lists docker networks)
+- docker network create [name-of-network] (creates a network)
+- oh also -e to set environmental variable
+- --name in run command to specify name of container
+
+    ```console
+     docker run -d \ <- create container and run in detached mode
+    -p 27017:27017 \ <- port
+    -e MONGO_INITDB_ROOT_USERNAME=admin \ <- env var for container
+    -e MONGO_INITDB_ROOT_PASSWORD=password \ <- env var for container
+    --network mongo-network \ <- this container is in this docker network
+    --name mongodb \ <- name of container set to
+    mongo <- image to be used to create the container
+    ```
