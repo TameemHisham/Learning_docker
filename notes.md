@@ -55,12 +55,13 @@ and no environmental configuration needed on server - except for docker runtime
 ## Commands:
 
 - docker pull postgres(:9.6 <- specific version include) [to pull/install an image, unspecified version pulls latest]
-- docker run <name> (creates a container)
+- docker run <name> (creates a container) (adding -d will run it in detach mode (background))
 - docker start/stop/exec <container> (start starts the container if stopped, stop stops it, and exec is used to run a new process or command inside an existing running docker container)
 - for the docker exec there are options like -i (interactive standard input STDIN) and -t (a terminal screen emulator) combined -it
 - [-i] -> provides input
 - [-t] -> provide terminal interface
 - [-it] -> provides both
+- docker ps (lists all running containers and adding a -a flag shows all containers running and not running)
 
 ## Image vs Container
 
@@ -77,3 +78,14 @@ and no environmental configuration needed on server - except for docker runtime
     - You can run any VM of any OS on any Host OS but docker must run on their compatible os
 - Different levels of abstractions
 - Why linux based docker containers don't run windows
+
+## Container Ports vs Host Ports
+
+- Multiple containers can run on host machine
+- your machine has only certain ports available
+- Binding between a host machine and container occurs
+- Port 5000 (on host machine) binds with Container running on port 5000
+- port of host -> which container is bind to it? forward request to it
+- Specifying binding port must be done on run command
+- docker run -p6000:6379 <container>
+-           host port : container port
