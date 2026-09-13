@@ -62,6 +62,7 @@ and no environmental configuration needed on server - except for docker runtime
 - [-t] -> provide terminal interface
 - [-it] -> provides both
 - docker ps (lists all running containers and adding a -a flag shows all containers running and not running)
+- for db e.g. docker exec -it pricewatch-db psql -U postgres -d pricewatch
 
 ## Image vs Container
 

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>User Profile</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background: #f2f2f2;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+            .card {
+                background: #fff;
+                padding: 24px;
+                border-radius: 10px;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+                text-align: center;
+                width: 280px;
+            }
+            .card img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 12px;
+            }
+            .card h2 {
+                margin: 8px 0 4px;
+            }
+            .card p {
+                color: #666;
+                margin: 4px 0;
+            }
+            .card input {
+                width: 90%;
+                padding: 6px;
+                margin: 4px 0;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 14px;
+            }
+            .card button {
+                margin-top: 12px;
+                padding: 6px 16px;
+                border: none;
+                border-radius: 4px;
+                background: #4682b4;
+                color: #fff;
+                cursor: pointer;
+            }
+            .card button:hover {
+                background: #3a6d99;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <img src="/profile-picture" alt="Profile picture" />
+
+            <!-- View mode -->
+            <div id="view-mode">
+                <h2 id="view-name">Tameem Hisham</h2>
+                <p id="view-email">tameem@example.com</p>
+                <p id="view-university">University of Manchester</p>
+                <button onclick="toggleEdit(true)">Edit</button>
+            </div>
+
+            <!-- Edit mode -->
+            <div id="edit-mode" style="display: none">
+                <input id="input-name" type="text" placeholder="Name" />
+                <input id="input-email" type="email" placeholder="Email" />
+                <input
+                    id="input-university"
+                    type="text"
+                    placeholder="University"
+                />
+                <br />
+                <button onclick="saveProfile()">Save</button>
+                <button onclick="toggleEdit(false)">Cancel</button>
+            </div>
+        </div>
+
+        <script>
+            // All in the browser only — nothing is sent to the server,
+            // so a page refresh resets everything back to the defaults above.
+
+            function toggleEdit(isEditing) {
+                if (isEditing) {
+                    // pre-fill inputs with whatever is currently shown
+                    document.getElementById("input-name").value =
+                        document.getElementById("view-name").textContent;
+                    document.getElementById("input-email").value =
+                        document.getElementById("view-email").textContent;
+                    document.getElementById("input-university").value =
+                        document.getElementById("view-university").textContent;
+                }
+                document.getElementById("view-mode").style.display = isEditing
+                    ? "none"
+                    : "block";
+                document.getElementById("edit-mode").style.display = isEditing
+                    ? "block"
+                    : "none";
+            }
+
+            function saveProfile() {
+                document.getElementById("view-name").textContent =
+                    document.getElementById("input-name").value;
+                document.getElementById("view-email").textContent =
+                    document.getElementById("input-email").value;
+                document.getElementById("view-university").textContent =
+                    document.getElementById("input-university").value;
+                toggleEdit(false);
+            }
+        </script>
+    </body>
+</html>
