@@ -87,5 +87,13 @@ and no environmental configuration needed on server - except for docker runtime
 - Port 5000 (on host machine) binds with Container running on port 5000
 - port of host -> which container is bind to it? forward request to it
 - Specifying binding port must be done on run command
-- docker run -p6000:6379 <container>
+- docker run -p6000:6379 [container]
 -           host port : container port
+
+## Debugging docker commands
+
+- docker logs [container id or name]
+
+- docker run vs docker start
+- docker run creates a new container from an image
+- docker start runs a container
