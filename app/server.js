@@ -21,6 +21,7 @@ app.get("/profile-picture", function (req, res) {
     res.writeHead(200, { "Content-Type": "image/jpg" });
     res.end(img, "binary");
 });
+console.log("HEY THERE");
 
 // use when starting application locally
 let mongoUrlLocal = "mongodb://admin:password@localhost:27017";

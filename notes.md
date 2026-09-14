@@ -154,3 +154,10 @@ docker compose file allows us to automate starting containers
 - -t is the name of image
 - then name:tag is the version
 - the second required parameter is the allocation of the docker file (where it is)
+
+### Image naming in docker registries
+
+registerDomain/imageName:tag
+In order to push image to a docker repository:
+you need to tag it to let it know where to push (since its an external repo a short alias doesn't hit the domain)
+Once you have the docker image inside a docker repo next step is running on the server
