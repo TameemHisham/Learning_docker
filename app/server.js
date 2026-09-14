@@ -25,7 +25,7 @@ app.get("/profile-picture", function (req, res) {
 // use when starting application locally
 let mongoUrlLocal = "mongodb://admin:password@localhost:27017";
 let mongoUrlDocker = "mongodb://admin:password@mongodb";
-let databaseName = "user-account";
+let databaseName = "my-db";
 
 app.post("/update-profile", async function (req, res) {
     let userObj = req.body;

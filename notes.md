@@ -117,3 +117,20 @@ and no environmental configuration needed on server - except for docker runtime
     --name mongodb \ <- name of container set to
     mongo <- image to be used to create the container
     ```
+
+## Docker compose
+
+docker compose file allows us to automate starting containers
+
+-start with the version of the docker compose file
+-followed by the services:
+
+- each service starts with the container name
+- followed by their image, port, environmental variables
+
+- you don't need to create a docker network for the container to communicate because thats automatically done for you by the docker compose file!
+
+- when a container is stopped it loses all its data on next run , so you need a volume for persistence
+- commands:
+    - docker-compose -f [docker compose file] [up/down] <- up to run and down to stop
+    - the down stops the containers and removes the network
