@@ -147,3 +147,10 @@ docker compose file allows us to automate starting containers
 - COPY [dir] <- difference from the linux command is that the commands in run , run inside the linux container whilst the COPY executes on the HOST to the machine
 - CMD ["node", "server.js"] <- basically executes an entry point linux command this commands translate to = "node server.js"
 - CMD vs RUN , CMD is an entry level command only meant to be ran once
+
+### Build the image using docker file
+
+- docker build -t my-app:1.0 . [the dot at the end is basically saying use current directory as the build context / host location also it should have the Dockerfile]
+- -t is the name of image
+- then name:tag is the version
+- the second required parameter is the allocation of the docker file (where it is)
