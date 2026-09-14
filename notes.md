@@ -161,3 +161,39 @@ registerDomain/imageName:tag
 In order to push image to a docker repository:
 you need to tag it to let it know where to push (since its an external repo a short alias doesn't hit the domain)
 Once you have the docker image inside a docker repo next step is running on the server
+
+### Docker Volumes
+
+- for persistent data
+- Use cases: - Database - Virtual File system - anywhere where you need to save changes
+- what are docker volumes: we plug a physical file system into the container file system => basically mounting a folder in a physical host file system into a virtual file system for docker
+- types of volumes:
+    - Type 1 (host volume)
+        - docker run using a [-v]
+        - you decided where on the host file system the reference is made
+    - Type 2 (anonyms volumes)
+        - For each container a folder is generated that gets mounted atomically
+    - Type 3 (anonyms volumes but named , so named volumes): <- should be used
+        - Specifies the folder on the host file system
+
+Docker volumes defections in docker compose:
+in docker compose:
+include a volumes part with the db path under container name
+then at the end you include a lists of all volumes used under a volumes name
+`console
+    e.g. 
+    version: '3'
+    services:
+        mongodb: 
+            image:...
+            ports:
+                - ....
+            volumes:
+                - db-data:/bar/lib/mysql/data
+        ...
+    volumes:
+        db-data
+    `
+docker volumes are located depending on OS
+for macos: /var/lib/docker/volumes
+for linux: /var/lib/docker/volumes
