@@ -134,3 +134,16 @@ docker compose file allows us to automate starting containers
 - commands:
     - docker-compose -f [docker compose file] [up/down] <- up to run and down to stop
     - the down stops the containers and removes the network
+
+## Packaging app to its own docker container (making a docker image) + Dockerfile
+
+### What is a dockerfile ?
+
+- Blue print for creating docker images
+- syntax:
+    - FROM [image name]
+    - ENV variable=...
+- RUN [linux command]
+- COPY [dir] <- difference from the linux command is that the commands in run , run inside the linux container whilst the COPY executes on the HOST to the machine
+- CMD ["node", "server.js"] <- basically executes an entry point linux command this commands translate to = "node server.js"
+- CMD vs RUN , CMD is an entry level command only meant to be ran once
